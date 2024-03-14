@@ -12,7 +12,7 @@ func (h Help) Name() string {
 	return "help"
 }
 
-func (h Help) Execute(args []string, out io.Writer) error {
+func (h Help) Execute(args []string) error {
 	panic("unimplemented")
 }
 
