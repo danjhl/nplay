@@ -1,0 +1,14 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - go build
+  run:
+    cmds:
+      - go run nplay.go {{.CLI_ARGS}} 
+  test:
+    cmds:
+      - go test
