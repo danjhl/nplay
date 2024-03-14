@@ -21,7 +21,7 @@ func main() {
 
 func Run(out io.Writer, cmdName string, args []string) error {
 	var help = Help{}
-	var cmds []Cmd = []Cmd{help}
+	var cmds []Cmd = []Cmd{help, Add{}}
 
 	for _, cmd := range cmds {
 		if cmd.Name() == cmdName {
@@ -29,7 +29,7 @@ func Run(out io.Writer, cmdName string, args []string) error {
 				(cmd.(Help)).ExecuteHelp(args, out, cmds)
 				return nil
 			}
-			return cmd.Execute(args, out)
+			return cmd.Execute(args)
 		}
 	}
 	return errors.New("Unknown command: '" + cmdName + "'")
