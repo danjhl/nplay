@@ -21,7 +21,7 @@ func main() {
 
 func Run(out io.Writer, cmdName string, args []string) error {
 	var help = Help{}
-	var cmds []Cmd = []Cmd{help, Add{}, Update{}}
+	var cmds []Cmd = []Cmd{help, Add{}, Update{}, Clean{}}
 
 	for _, cmd := range cmds {
 		if cmd.Name() == cmdName {
