@@ -13,15 +13,15 @@ func main() {
 	cmdName := "help"
 
 	if len(os.Args) >= 2 {
-		args = os.Args[1:]
+		args = os.Args[2:]
 		cmdName = os.Args[1]
 	}
-	Run(out, cmdName, args)
+	handle(Run(out, cmdName, args), out)
 }
 
 func Run(out io.Writer, cmdName string, args []string) error {
 	var help = Help{}
-	var cmds []Cmd = []Cmd{help, Add{}}
+	var cmds []Cmd = []Cmd{help, Add{}, Update{}}
 
 	for _, cmd := range cmds {
 		if cmd.Name() == cmdName {
