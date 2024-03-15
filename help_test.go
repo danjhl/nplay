@@ -11,6 +11,9 @@ func TestHelp(t *testing.T) {
 	var out bytes.Buffer
 	Run(&out, "help", []string{})
 
-	expected := Add{}.Help() + "\n\n" + Update{}.Help() + "\n\n"
+	expected := Add{}.Help() + "\n\n" +
+		Update{}.Help() + "\n\n" +
+		Clean{}.Help() + "\n\n"
+
 	assert.Equal(t, expected, out.String())
 }

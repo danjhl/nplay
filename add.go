@@ -57,7 +57,8 @@ func (i Add) Execute(args []string) error {
 				exists = true
 				continue
 			}
-			match, err := regexp.MatchString("\\d+_"+file.Name(), entry)
+			match, err := regexp.MatchString("\\d+_"+
+				regexp.QuoteMeta(file.Name()), entry)
 			if err != nil {
 				return err
 			}
