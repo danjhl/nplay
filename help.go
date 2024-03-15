@@ -19,15 +19,13 @@ func (h Help) Execute(args []string) error {
 func (h Help) ExecuteHelp(args []string, out io.Writer, cmds []Cmd) {
 	builder := strings.Builder{}
 
-	for i, cmd := range cmds {
+	for _, cmd := range cmds {
 		help := cmd.Help()
 		if help == "" {
 			continue
 		}
 		builder.WriteString(help)
-		if i < len(cmds)-1 {
-			builder.WriteString("\n")
-		}
+		builder.WriteString("\n\n")
 	}
 	out.Write([]byte(builder.String()))
 }

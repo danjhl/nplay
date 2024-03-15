@@ -18,8 +18,20 @@ func (i Add) Name() string {
 	return "add"
 }
 
+func (i Add) Help() string {
+	return "add\n\n" +
+		"Usage: add [dir]\n\n" +
+
+		"Add music to a playlist.txt file.\n\n" +
+
+		"dir: optional directory to add files to a playlist.txt (default is current directory)"
+}
+
 func (i Add) Execute(args []string) error {
 	dir, err := getExecutionDirectory(args)
+	if err != nil {
+		return err
+	}
 	playlist := dir + "/" + PLAYLIST
 
 	entries, err := getPlaylistEntries(playlist)
@@ -67,7 +79,6 @@ func (i Add) Execute(args []string) error {
 		return err
 	}
 	defer playlistFile.Close()
-
 	for _, entry := range writeEntries {
 		if entry != "" {
 			_, err := playlistFile.WriteString(entry + "\n")
@@ -133,11 +144,4 @@ func isSupportedFile(fileName string) bool {
 	}
 	return false
 
-}
-
-func (i Add) Help() string {
-	return "add\n\n" +
-		"Usage: add [dir]\n\n" +
-		"Add music to a playlist.txt file.\n\n" +
-		"dir: optional directory to add files to a playlist.txt (default is current directory)\n"
 }
